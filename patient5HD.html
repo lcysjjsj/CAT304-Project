@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- import CSS 引入样式-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Doctor Consultation Platform</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #4caf50;
+            margin-bottom: 10px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        input,
+        select,
+        /* button, */
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+     
+       .button-00 {
+            width:100px;
+            height:50px;
+            background-color:rgb(25, 0, 255);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }   
+        .button-00:hover {
+            background-color: #45a049;
+        } 
+        
+        
+        #chat-box {
+            
+            height:350px;
+            overflow-y: auto;
+        }
+        
+        #chat-messages p {
+            margin: 10px 0;
+        }
+
+ 
+    .buttonPic {
+        width:200px;
+        height:200px;
+        background-image: url("./icon/nurse.png");
+        background-size: cover; /* 调整图片大小，充满整个按钮 */
+        border-radius: 12px;
+        /*color: #fff;  按钮文字颜色 */
+        color: #0f0f0f; /* 按钮文字颜色 */
+        padding: 10px 20px; /* 按钮内边距 */
+       
+        border:4px rgb(4, 0, 255) groove;  /* border: none;  按钮边框 */
+        font-family: Phantomsans, sans-serif;
+        font-size: 24px; /* 按钮文字大小 */
+        margin-right: 20px; /*按钮之间预留20个像素宽带的空隙*/
+        margin-top: 10px;
+        cursor: pointer; /* 鼠标光标样式 */
+    }
+
+    .buttonPic:hover {
+        background-color: #007AA7;
+        box-shadow: 0 8px #005F7F;
+        cursor: pointer;
+        }
+    .buttonPic:active {
+        color: #10064b; /* 按钮文字颜色 */
+        background-color: #4c63af;  /*背景颜色变为#4CAF50*/
+         box-shadow: 0 8px #666;  /*产生一个5像素的阴影效果*/
+         transform: translateY(5px);  /*向下5像素的平移运动*/
+        }
+  
+
+    .button-01 {
+                display: inline-block;
+                border-radius: 4px;
+                background-color: #f4511e;
+                border: none;
+                color: #FFFFFF;
+                text-align: center;
+                font-size: 28px;
+                padding: 20px;
+                width: 200px;
+                transition: all 0.5s;
+                cursor: pointer;
+                margin: 5px;
+            }
+
+            .button-01 span {
+                cursor: pointer;
+                display: inline-block;
+                position: relative;
+                transition: 0.5s;
+            }
+
+            .button-01 span:after {
+                content: '»';
+                position: absolute;
+                opacity: 0;
+                top: 0;
+                right: -20px;
+                transition: 0.5s;
+            }
+
+            .button-01:hover span {
+                padding-right: 25px;
+            }
+
+            .button-01:hover span:after {
+                opacity: 1;
+                right: 0;
+            }   
+
+    .button-71 {
+              background-color: #0078d0;
+              border: 0;
+              border-radius: 56px;
+              color: #fff;
+              cursor: pointer;
+              display: inline-block;
+              font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
+              font-size: 18px;
+              font-weight: 600;
+              outline: 0;
+              padding: 16px 21px;
+              position: relative;
+              text-align: center;
+              text-decoration: none;
+              transition: all .3s;
+              user-select: none;
+              -webkit-user-select: none;
+              touch-action: manipulation;
+            }
+  
+        .button-71:before {
+              background-color: initial;
+              background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
+              border-radius: 125px;
+              content: "";
+              height: 50%;
+              left: 4%;
+              opacity: .5;
+              position: absolute;
+              top: 0;
+              transition: all .3s;
+              width: 92%;
+            }
+
+        .button-71:hover {
+              box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
+              transform: scale(1.05);
+            }
+  
+        @media (min-width: 768px) {
+              .button-71 {
+                padding: 16px 48px;
+              }
+        }
+
+    .button-99 {
+      align-items: center;
+      background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+      border: 0;
+      border-radius: 8px;
+      box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+      box-sizing: border-box;
+      color: #FFFFFF;
+      display: flex;
+      font-family: Phantomsans, sans-serif;
+      font-size: 20px;
+      justify-content: center;
+      line-height: 1em;
+      margin-bottom: 10px;
+      max-width: 100%;
+      min-width: 140px;
+      padding: 3px;
+      text-decoration: none;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      white-space: nowrap;
+      cursor: pointer;
+      float:left;
+        }
+
+         .button-99:active,
+         .button-99:hover {
+            outline: 0;
+          }
+
+         .button-99 span {
+            background-color: rgb(5, 6, 45);
+             padding: 16px 24px;
+             border-radius: 6px;
+             width: 100%;
+             height: 100%;
+             transition: 300ms;
+            }
+
+        .button-99:hover span {
+             background: none;
+            }
+
+        @media (min-width: 768px) {
+            .button-99 {
+              font-size: 24px;
+              min-width: 196px;
+             }
+    }
+    .container {
+        height: 140px;      /* 设置容器的高度 */
+        display: flex;
+        flex-direction: row;
+        overflow-y: scroll; /* 开启垂直滚动条 */
+        border: 1px solid black; /* 自定义边框样式 */
+        background-color: lightgray; /* 自定义背景色 */
+        }
+    </style>
+
+</head>
+
+<body>
+   
+    <section id="patient-info">
+        <h2>Patient Information</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="Patient-name" placeholder="Enter your name">
+
+        <label for="sex">Sex:</label>
+        <input type="radio" id="sex" name="sex" value="1" style="width:20px;">Male
+        <input type="radio" id="sex" name="sex" value="0" style="width:20px;">Female
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" 
+                 oninput  = "if(value.length>3) value=value.slice(0,3);"
+                 onchange = "if(value>150)    value=value.slice(0,2) "
+                 placeholder="Enter your age (0~150)"   >
+                 <!-- oninput  = "if(value.length>3) value=value.slice(0,3);" -->
+                 <!-- onchange = "if(value>150)    value=''; " -->
+                 <!-- onchange = "if(value>150)    value=null; " -->
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" placeholder="Enter your phone number(Up to 13 digits)" 
+               oninput="value=value.replace(/[^\d]/g,'')" maxlength="13" >
+        
+     
+            <!-- 定义一个空白的 div 作为按钮的容器 -->
+            <!-- <div id="Doctor-Info" class="container" style="display: flex;flex-direction: row;">
+                <div id="Doctor-container" class="container">  </div> 
+                <div id="Doctor-resume"    class="textarea">  </div> 
+             Dr.Information</div> -->
+        
+
+        <!-- <button class="button-00" role="button" onclick="showDepartmentSelection()">Next Step</button> -->
+        <button class="button-01" style="vertical-align:middle" onclick="showDepartmentSelection()"><span>Next Step </span></button> 
+        <button class="buttonPic" onclick="showDepartmentSelection()"
+                style="background-image: url('./icon/southeast.jpg');" > Department</button> 
+
+        <!-- <button class="buttonPic" onclick="addButton()"> 医生信息</button>  -->
+               
+    </section>
+
+    <section id="department-selection" style="display: none;">
+        <h2>Department Selection</h2>
+      <!-- 
+          <label for="department">Department:</label>
+          <select id="department">
+            <option value="internal-medicine">Internal Medicine</option>
+            <option value="surgery">Surgery</option>
+            <option value="neurology">Neurology</option>
+            <option value="gastroenterology">Gastroenterology</option>
+            <option value="Otolaryngology">Otolaryngology</option>
+            <option value="ophthalmology">Ophthalmology</option>
+            <option value="department of stomatology">Stomatology</option>
+            <option value="orthopedics">Orthopedics</option>
+         </select>  
+         <br><br>
+         <button class="button-01" style="vertical-align:middle" onclick="showDoctorList()"><span>Next Step </span></button> 
+      -->
+   
+     <button-Group id="department" >
+       <!--  <button class="buttonPic"   onclick="showDoctorListP('internal-medicine')"
+                style="background-image: url('./icon/internal-medicine.png');"> InternalMedicine</button>
+        <button class="buttonPic"        onclick="showDoctorListP('surgery')"
+                style="background-image: url('./icon/surgery.png');" > Surgery</button>
+        <button class="buttonPic"        onclick="showDoctorListP('neurology')"
+                style="background-image: url('./icon/neurology.png');" > Neurology</button>
+        <button class="buttonPic"        onclick="showDoctorListP('gastroenterology')"
+                style="background-image: url('./icon/gastroenterology.png');" > Gastroenterology</button>
+        <button class="buttonPic"        onclick="showDoctorListP('Otolaryngology')"
+                style="background-image: url('./icon/otolaryngology.png');" > Otolaryngology </button>
+        <button class="buttonPic"        onclick="showDoctorListP('ophthalmology')"
+                style="background-image: url('./icon/ophthalmology.png');" > Ophthalmology</button>
+        <button class="buttonPic"        onclick="showDoctorListP('department of stomatology')"
+                style="background-image: url('./icon/stomatology.png');" > Stomatology</button>
+        <button class="buttonPic"        onclick="showDoctorListP('orthopedics')"
+                style="background-image: url('./icon/orthopedics.png');" > <span>Orthopedics</span></button>  -->
+         <!-- document.setElementById('department-selection').value = value;   -->
+         <button class="buttonPic"  value="internal-medicine"  
+                 onclick="department.value=value; showDoctorList();" 
+                 style="background-image: url('./icon/internal-medicine.png');"> InternalMedicine</button>
+         <button class="buttonPic"  value="surgery"    
+                 onclick="department.value=value; showDoctorList();" 
+                 style="background-image: url('./icon/surgery.png');" > Surgery</button>
+         <button class="buttonPic"  value="neurology"        
+                 onclick="department.value=value; showDoctorList();" 
+                 style="background-image: url('./icon/neurology.png');" > Neurology</button>
+         <button class="buttonPic"  value="gastroenterology" 
+                 onclick="department.value=value; showDoctorList(); "
+                 style="background-image: url('./icon/gastroenterology.png');" > Gastroenterology</button>
+         <button class="buttonPic"  value="Otolaryngology"   
+                 onclick="department.value=value; showDoctorList();" 
+                 style="background-image: url('./icon/otolaryngology.png');" > Otolaryngology </button>
+         <button class="buttonPic"  value="ophthalmology"
+                 onclick="department.value=value; showDoctorList();" 
+                 style="background-image: url('./icon/ophthalmology.png');" > Ophthalmology</button>
+         <button class="buttonPic"  value="department of stomatology" 
+                 onclick="department.value=value; showDoctorList();" 
+                 style="background-image: url('./icon/stomatology.png');" > Stomatology</button>
+         <button class="buttonPic"  value="orthopedics"
+                 onclick="department.value=value; showDoctorList();" 
+                 style="background-image: url('./icon/orthopedics.png');" > <span>Orthopedics</span></button> 
+      </button-Group>
+
+
+    </section>
+
+    <section id="doctor-list" style="display: none;">
+        <h2>Choose a Doctor</h2>
+        <label for="doctor">Doctor:</label>
+        <select id="doctor">
+            <!-- Doctors dynamically loaded based on the selected department -->
+        </select>
+
+        <!-- 定义一个空白的 div 作为按钮的容器 display: inline-flex;flex-direction:row;"-->
+            <div id="Doctor-Info" class="container" style="display: flex;flex-direction:row;flex-direction:row;">
+                <div id="Doctor-container" class="container" style="display: flex;flex-direction: column; heigth:65px;width:230px;">  </div> 
+                <div id="Doctor-resume"    class="textarea"  style="display: flex;flex-direction: column; heigth:65px;width:350px;">  </div> 
+             </div>
+
+        <!-- <button onclick="startChat()">Start Chat</button> -->
+        <br>
+        <button class="button-71" role="button" onclick="startChat()">Start Chat</button>   
+        <br> 
+
+    </section>
+
+    <section id="chat-box" style="display: none;">
+
+        <h2>Online Chat - Symptom Description:</h2>      
+        <div id="chatHis-Cont" class="container">
+           <div id="chat-History" placeholder="View history message here" rows="4"></div>
+        </div>  
+
+        <div id="Current_Info"> </div>   <!-- 获取系统当前信息：日期、科室、大夫等信息-->         
+
+        <textarea id="message-input" placeholder="Patient: Type your message here" rows="2"></textarea>
+
+        <!-- <button class="button-71" role="button" onclick="sendMessage()">Send Message</button>  -->
+        <button class="button-99" role="button" onclick="sendMessage()">Send Message</button>
+  
+    </section>
+
+    <script>
+        var doctorData = {
+            "internal-medicine": ["Dr. Smith", "Dr. Johnson"],
+            "surgery": ["Dr. Lee", "Dr. Wang"],
+            "neurology": ["Dr. Brown", "Dr. Davis"],
+            "gastroenterology": ["Dr. Miller", "Dr. Wilson"],
+            "Otolaryngology": ["Dr.Allan", "Dr.Blake"],
+            "ophthalmology": ["Dr.Curry", "Dr.Cooper"],
+            "department of stomatology": ["Dr.Cutter", "Dr. Davis"],
+            "orthopedics": ["Dr.Adams", "Dr.Allen"]
+        };
+/*         var DoctorInfo ={
+            "Dr. Smith": ["Dr. Smith", "Dr. Smith Resume:"],
+            "Dr. Johnson":["Dr. Smith", "Dr. Johnson Resume:"],
+            "Dr. Lee": ["Dr. Lee", "Dr. Lee Resume:"],
+            "Dr. Wang": ["Dr. Lee", "Dr. Wang Resume:"],
+            "Dr. Brown": ["Dr. Brown", "Dr. Davis"],
+            "Dr. Davis": ["Dr. Davis", "Dr. Davis Resume:"],
+            "Dr. Miller": ["Dr. Miller", "Dr. Miller  Resume"],
+            "Dr. Wilson": ["Dr. Wilson", "Dr. Wilson Resume:"],
+            "Dr.Allan": ["Dr.Allan ", "Dr.Allan Resume"],
+            "Dr.Blake": ["Dr.Allan ", "Dr.Blake Resume:"],
+            "Dr.Curry": ["Dr.Curry", "Dr.Curry Resume"],
+            "Dr.Cooper": ["Dr.Cooper", "Dr.Cooper Resume:"],
+            "Dr.Cutter": ["Dr.Cutter", "Dr.Cutter Resume"],
+            "Dr. Davis": ["Dr.Cutter ", "Dr. Davis Resume:"],
+            "Dr.Adams": ["Dr.Adams", "Dr.Adams Resume："],
+            "Dr.Allen": ["Dr.Adams ", "Dr.Allen Resume:"]
+        };
+ */
+       function addButton() {   
+                var btn = document.createElement("button"); // 创建新的按钮元素
+                    btn.innerHTML =  "新按钮"; // 设置按钮文本内容
+                     //btn.onclick = "startChat()";
+                    btn.style="background-image: url('./icon/Doctor.png'); margin-top: 5px;margin-right: 5px; background-size: cover; font-size: 16px; width:60px; height:60px;"
+
+                var container01 = document.getElementById("Doctor-container"); // 获取要放置按钮的容器元素
+                    container01.appendChild(btn); // 将按钮添加到容器中
+                
+                var DocRenume = document.createElement("textarea"); // 创建新的标签元素
+                    //DocRenume.style="rows:4; cols:50 ;";
+                    DocResume.readOnly = true ;
+                    DocRenume.innerHTML =  "医生简介如下~";
+                 // var DoctorSection = document.getElementById("patient-info");              
+                var DoctorSection = document.getElementById("Doctor-Info");
+                    DoctorSection.appendChild(DocRenume); 
+        }
+   
+
+        function showDepartmentSelection() {
+            document.getElementById('patient-info').style.display = 'none';
+            document.getElementById('department-selection').style.display = 'block';
+        }
+
+        function showDoctorListP($Dept) {
+            var department = $Dept;
+                document.getElementById('department').value = department;
+            var doctors = doctorData[department];
+
+            var doctorList = document.getElementById('doctor');
+            doctorList.innerHTML = "";
+
+            for (var i = 0; i < doctors.length; i++) {
+                var option = document.createElement("option");  //创建元素option
+                option.value = doctors[i];                      //为optin赋值
+                option.text  = doctors[i];
+                doctorList.add(option);
+            }
+
+            document.getElementById('department-selection').style.display = 'none';
+            document.getElementById('doctor-list').style.display = 'block';
+        }   
+
+       function showDoctorList() {
+            var department = document.getElementById('department').value;
+            var doctors = doctorData[department];
+
+            var doctorList = document.getElementById('doctor');
+            doctorList.innerHTML = "";
+
+            //var DoctorSection = document.getElementById("doctor-list");
+            var container01 = document.getElementById("Doctor-container"); // 获取要放置按钮的容器元素
+                  //  container01.appendChild(btn); // 将按钮添加到容器中
+            var DoctorSection = document.getElementById("Doctor-Info");
+
+
+            for (var i = 0; i < doctors.length; i++) {
+                var option = document.createElement("option");  //创建元素option
+                option.value = doctors[i];                      //为optin赋值
+                option.text = doctors[i];
+                doctorList.add(option);
+
+                var btn = document.createElement("buttonPic"); // 创建新的按钮元素
+                    btn.innerHTML =  doctors[i]; // 设置按钮文本内容
+
+                var btn = document.createElement("button"); // 创建新的按钮元素
+                    btn.innerHTML =  doctors[i]; // 设置按钮文本内容
+                   // btn.style="background-image: url('./icon/Doctor.png'); margin-right:5px; background-size: cover; font-size: 16px; width:65px; height:65px;"
+                    btn.style="background-image: url('./icon/Doctor.png');margin-top: 5px;margin-right: 5px; background-size: cover; font-size: 16px; width:60px; height:60px;"
+                    container01.appendChild(btn); // 将按钮添加到容器中
+
+                var DocResume = document.createElement("textarea"); 
+                    //DocResume.style="rows:4; display:flex;flex-direction:column;";
+                    //DocResume.style="rows:4; cols:320;"; 
+                    DocResume.innerHTML = doctors[i] + " 医生简介如下：";
+                    DocResume.readOnly = true ;
+                 
+                    DoctorSection.appendChild(DocResume); 
+                    // DoctorSection.appendChild(btn); 
+                    // DoctorSection.appendChild(DocRenume);
+
+            }
+
+            document.getElementById('department-selection').style.display = 'none';
+            document.getElementById('doctor-list').style.display = 'block';
+
+        }
+
+        function startChat() {
+            document.getElementById('doctor-list').style.display = 'none';
+               // 获取当前日期和时间
+               var currentDateTime = new Date();
+               // 格式化日期字符串
+               var formattedDate = currentDateTime.toLocaleString('zh-CN',
+                       { year: 'numeric', month: '2-digit', day: '2-digit' });
+               var formattedTime = currentDateTime.toLocaleString('zh-CN',
+                       { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+               // 更新页面上显示日期的元素
+               var department = document.getElementById('department').value;
+               var Dr_name = document.getElementById('doctor').value;
+                     document.getElementById("Current_Info").innerHTML = 
+                        " Chat with " + Dr_name + " from Dept. " + department+ ", " + formattedDate;
+
+            document.getElementById('chat-box').style.display = 'block';
+            
+            //获取病人姓名--聊天ID，及历史记录框ID
+             var PatientKey = document.getElementById('Patient-name').value;
+             var ChatHisId = document.getElementById('chat-History');
+
+            // 第一次接诊该病人 
+                 var HisChat  = localStorage.getItem(PatientKey); //获取历史记录   
+                 if ( HisChat == null )  
+                 {
+                    var StarChat ='<p>---' + formattedDate + 'Patient: <strong>'+ PatientKey  +'</strong> Entering---</p>';
+                    localStorage.setItem(PatientKey,StarChat);
+                 } 
+            // 病人进入聊天，系统自动发送一条消息
+                HisChat  = localStorage.getItem(PatientKey); 
+                HisChat +='<p>' + formattedTime + '<strong> Hello, '+ PatientKey  +'!</strong>--from Dr. Online--</p>'; 
+                localStorage.setItem(PatientKey, HisChat);
+                //ChatHisId.scrollIntoView(false); 
+
+            //定时更新聊天界面双方聊天历史记录
+            setInterval(function(){
+                //if (ChatHisId.innerHTML !=  localStorage.getItem(PatientKey))   //如果消息有变化则自动更新
+                if (ChatHisId.innerHTML.length !=  localStorage.getItem(PatientKey).length)   //如果消息有变化则自动更新
+                  {   ChatHisId.innerHTML =  localStorage.getItem(PatientKey);
+                      ChatHisId.scrollIntoView(false);  
+                    }
+               }, 300);            
+        }
+
+       /*    
+         setInterval(function(){
+             // 这里写需要定时执行的代码或者调用其他函数
+             }, interval);
+       */
+        function sendMessage() {
+            var messageInput = document.getElementById('message-input');
+            var message = messageInput.value;
+
+              //获取病人姓名--存储的键值
+               var PatientKey = document.getElementById('Patient-name').value;
+               // 获取当前日期和时间
+               var currentDateTime = new Date();
+               // 格式化日期和时间字符串
+               //var formattedDate = currentDateTime.toLocaleString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
+               var formattedTime = currentDateTime.toLocaleString('zh-CN',
+                   { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+               // 更新页面上显示日期和时间的元素
+               // document.getElementById("Current_Info").innerHTML = "Date:" + formattedDate + " Time:" + formattedTime;
+
+            // var chatMessages = document.getElementById('chat-messages');
+            // chatMessages.innerHTML += '<p>'+ formattedTime + " Patient "+'<strong>'+PaintKey  +'</strong>'+ ": "+ message + '</p>';
+            // chatMessages.scrollIntoView(false);
+
+            // Actual chat logic with the doctor can be added here
+            //将最新聊天记录按键值，追加最新信息，更新到浏览器存储
+            var  HisChat  = localStorage.getItem(PatientKey); //获取历史记录
+                 HisChat +='<p>'+ formattedTime + " Patient "+'<strong>'+PatientKey  +'</strong>'+ ": "+ message + '</p>';
+                 localStorage.setItem(PatientKey, HisChat);  //更新到浏览器存储
+            //更新聊天界面双方聊天记录，并自动滚动到末尾
+            var  ChatHisId = document.getElementById('chat-History');
+                 ChatHisId.innerHTML =  localStorage.getItem(PatientKey);
+                 ChatHisId.scrollIntoView(false);
+            messageInput.value = '';
+
+        }
+    </script>
+</body>
+
+  <!-- import Vue before Element 引入组件库-->
+  <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return { visible: false }
+      }
+    })
+  </script>
+
+
+</html>

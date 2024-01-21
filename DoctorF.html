@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS 引入样式-->
+     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Doctor-Patient Chat</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+            height: 90%
+        }
+        
+        section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            /* height: 80% ; */
+        }
+        
+        h2 {
+            color: #4caf50;
+            margin-bottom: 10px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        input,
+        select,
+        /* button, */
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .button-00 {
+            width: 100px;
+            height: 50px;
+            background-color: rgb(25, 0, 255);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .button-00:hover {
+            background-color: #45a049;
+        }
+        
+        #chat-box {
+            /* height: 300px; */
+            height:450px;
+            overflow-y: auto;
+        }
+        
+        #chat-messages p {
+            margin: 10px 0;
+        }
+
+     .button-71 {
+            background-color: #0078d0;
+            border: 0;
+            border-radius: 56px;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: system-ui, -apple-system, system-ui, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            outline: 0;
+            padding: 16px 21px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            transition: all .3s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+        
+        .button-71:before {
+            background-color: initial;
+            background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
+            border-radius: 125px;
+            content: "";
+            height: 50%;
+            left: 4%;
+            opacity: .5;
+            position: absolute;
+            top: 0;
+            transition: all .3s;
+            width: 92%;
+      
+        }
+        
+        .button-71:hover {
+            box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
+            transform: scale(1.05);
+        }
+        
+        @media (min-width: 768px) {
+            .button-71 {
+                padding: 16px 48px;
+            }
+        }
+        
+        .button-99 {
+            align-items: center;
+            background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+            border: 0;
+            border-radius: 8px;
+            box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            display: flex;
+            font-family: Phantomsans, sans-serif;
+            font-size: 20px;
+            justify-content: center;
+            line-height: 1em;
+            max-width: 100%;
+            min-width: 140px;
+            padding: 3px;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            white-space: nowrap;
+            cursor: pointer;
+            float: left;
+        }
+        
+        .button-99:active,
+        .button-99:hover {
+            outline: 0;
+        }
+        
+        .button-99 span {
+            background-color: rgb(5, 6, 45);
+            padding: 16px 24px;
+            border-radius: 6px;
+            width: 100%;
+            height: 100%;
+            transition: 300ms;
+        }
+        
+        .button-99:hover span {
+            background: none;
+        }
+        
+        @media (min-width: 768px) {
+            .button-99 {
+                font-size: 24px;
+                min-width: 196px;
+            }
+        }
+   
+     .container {
+        height: 200px;      /* 设置容器的高度 */
+        overflow-y: scroll; /* 开启垂直滚动条 */
+        border: 1px solid black; /* 自定义边框样式 */
+        background-color: lightgray; /* 自定义背景色 */
+       
+        }
+     
+    </style>
+</head>
+
+<body>
+    
+    <section id="patient-info">
+        <h2>Patient Information</h2>
+        <label for="Patient-name">Patient Name:</label>
+        <input type="text" id="Patient-name" placeholder="Enter patient's name">
+        <br> <br>
+        <!-- <button class="button-99" role="button" onclick="startChat()">Start Chat01</button> -->
+        <button class="button-71" onclick="startChat()" >Start Chat </button> 
+        <br> <br>
+        
+    </section>
+
+    <section id="chat-box" style="display: none;">
+        <h2>Doctor-Patient Chat</h2>
+
+        <!--   
+        <div id="chat-Cont" class="container">
+           <div id="chat-messages" placeholder="History message is here"></div>
+        </div> 
+        <br> -->
+
+        <div id="chatHis-Cont" class="container">
+           <div id="chat-History" placeholder="View history message here" rows="3"></div>
+        </div> 
+
+        <div id="current_date"> </div>   <!--  获取系统当前日期 -->  
+        
+        <!-- onclick="showDoctorListP('internal-medicine')" -->
+        <div id ="chatMesh-Cont" style="display: flex;flex-direction: row;" >
+           <div style="background-image: url('./icon/Doctor.png'); margin-right: 5px; background-size: cover;font-size: 16px; width:65px; height:60px; ">Dr.</div> 
+           <!-- 
+              <button disabled class="buttonPic" style="background-image: url('./icon/Doctor.png'); 
+                  margin-right: 5px;margin-top: 5px;font-size: 12px; width:60px; height:60px; ">Doctor</button> 
+            -->
+           <textarea id="message-input" placeholder="Doctor: Type your message here" rows="4"></textarea>
+        </div> 
+
+        <!-- <button class="button-71" onclick="sendMessage()">Send Message</button>  -->
+        <button class="button-99" role="button" onclick="sendMessage()">Send Message</button>
+        <br> <br>
+
+    </section>
+
+    <script>
+        // 模拟医生和病人的聊天逻辑
+        function startChat() {
+            document.getElementById('patient-info').style.display = 'none';
+               // 获取当前日期和时间
+               var currentDateTime = new Date();
+               // 格式化日期字符串
+               var formattedDate = currentDateTime.toLocaleString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
+               var formattedTime = currentDateTime.toLocaleString('zh-CN', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+                        
+            //获取病人姓名--聊天ID，及历史记录框ID
+                 var PatientKey = document.getElementById('Patient-name').value;
+                 var ChatHisId = document.getElementById('chat-History');
+
+            // 更新页面上显示日期的元素
+               document.getElementById("current_date").innerHTML = "Date:" + formattedDate + " chat with Patient " + PatientKey;
+               document.getElementById('chat-box').style.display = 'block';
+
+            // 第一次接诊该病人 
+                 var HisChat  = localStorage.getItem(PatientKey); //获取历史记录   
+                 if ( HisChat == null )  
+                 {
+                    var StarChat ='<p>---' + formattedDate + 'Patient: <strong>'+ PatientKey  +'</strong> Entering---</p>';
+                        localStorage.setItem(PatientKey,StarChat);
+                 }
+            // 开始接诊，自动发送一条消息
+                   HisChat  = localStorage.getItem(PatientKey); 
+                   HisChat +='<p>' + formattedTime + ' Welcome <strong> '+ PatientKey  +' !</strong> from Dr. Online </p>'; 
+                   localStorage.setItem(PatientKey, HisChat);
+                   ChatHisId.scrollIntoView(false); 
+
+            //定时更新聊天界面双方聊天历史记录
+             setInterval(function(){
+                // 这里写需要执行的代码或者调用其他函数
+                 //var HisChat  = localStorage.getItem(PatientKey); //获取历史记录
+                 if (ChatHisId.innerHTML !=  localStorage.getItem(PatientKey))  //如果消息有变化则自动更新
+                   {
+                    ChatHisId.innerHTML =  localStorage.getItem(PatientKey);
+                    ChatHisId.scrollIntoView(false);    
+                   }
+                 }, 300);
+
+        }
+
+        function sendMessage() {
+            var messageInput = document.getElementById('message-input');
+            var message = messageInput.value;
+
+               // 获取当前日期和时间
+               var currentDateTime = new Date();
+               // 格式化日期和时间字符串
+               //var formattedDate = currentDateTime.toLocaleString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' });
+               var formattedTime = currentDateTime.toLocaleString('zh-CN', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+               // 更新页面上显示日期和时间的元素
+               // document.getElementById("current_date").innerHTML = "Date:" + formattedDate + " Time:" + formattedTime;
+
+              // 实际的医生聊天逻辑可以在此处添加，医生+病人聊天信息服务端需要进行合并处理
+              // var chatMessages = document.getElementById('chat-messages'); 
+              // 将本次聊天记录添加到文本框,并自动滚动到末尾
+              // chatMessages.innerHTML +='<p>'+ formattedTime +'<strong> Doctor:</strong> ' + message + '</p>';
+              // chatMessages.scrollIntoView(false);
+             
+            //获取病人姓名--键值
+            var PatientKey = document.getElementById('Patient-name').value;
+            //将最新聊天记录按键值，追加到浏览器存储
+            var HisChat  = localStorage.getItem(PatientKey); //从浏览器内存获取历史记录     
+                HisChat +='<p>'+ formattedTime +'<strong> Doctor:</strong> ' + message + '</p>';
+                localStorage.setItem(PatientKey, HisChat);
+
+            // Actual chat logic with the doctor can be added here
+                 messageInput.value = '';
+            //更新聊天界面双方聊天记录，并自动滚动到末尾
+                // var ChatHisId = document.getElementById('chat-History');
+                //     ChatHisId.innerHTML =  localStorage.getItem(PatientKey);
+                //     ChatHisId.scrollIntoView(false);
+            
+        }
+
+    </script>
+
+</body>
+
+</html>
